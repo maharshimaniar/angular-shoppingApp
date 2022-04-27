@@ -1,0 +1,16 @@
+<h3>Cart</h3>
+<a [routerLink]="['/shipping']">Shipping Charges</a>
+<div *ngIf="cartItems">
+  <div *ngFor="let item of cartItems">
+    <h3>{{ item.name }}</h3>
+    <h4>{{ item.price | currency }}</h4>
+    <p>{{ item.description }}</p>
+    <button (click)="removeFromCart(item.id)">Remove</button>
+  </div>
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <button class="button" type="submit">Purchase</button>
+  </form>
+</div>
+<div *ngIf="cartItems.length === 0">
+  <p>No Items in Cart.</p>
+</div>
